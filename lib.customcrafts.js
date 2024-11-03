@@ -1,7 +1,6 @@
-// Library to register custom crafting recipes with server support.
 (function LibCustomCrafts() {
     ModAPI.meta.title("LibCustomCrafts");
-    ModAPI.meta.credits("By radmanplays");
+    ModAPI.meta.credits("By ZXMushroom63");
     ModAPI.meta.icon("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAtFBMVEVHcEwYEwxMPSYcFw4tIxVbSS0VEQpNOiN4Ty8aFAxVRCpeTC9dPiVjUDE0KhoxKBgSDgkWEgsYFAxlUzMhGQ9PPydPPiYjGxAwJxlANCB1XDh6Yz5BNCBbSi1PQCc8Lx1lUDFfTC1+UTF3Ty9vRil9UzIrIhU3KxpWRixTQylKOiN3TC2GVjNdSCxuWjc+Mx92YDppW0ZUSjpENSBrVjSIbUN+Z0B9ZD5eNSCBaUFcPyaHeWIo38CYAAAAHnRSTlMABvA9QvI9p/AHSO+nqL6hHD4c8Uy+vkzx8fLv76GQSIt6AAAAy0lEQVQY0z2P13LCMBREhcGxMTUEEgiJepe7DYTw//+FRNu5L3tmZ/YuAEHj9ebzawyeGoymKWPpdDR42CSlueM0T5OAVouYMeeY41yIeLEEwwnhuaCcUZr/m+jdg7r4c4IKwVVHojcwjAlGBBfGdtKaACakR+VZVxpKi2+g0RUuobL+dAAfl0bhg1EdkvCeODWorCFqW6nhT0icelUfTNW0Eha+dvX7fazKHiKiZREnS/96Ntsda+urt8lrzWxvUPS0t/nZfJ7d518BlfsYCbFp6bEAAAAASUVORK5CYII=");
     ModAPI.meta.description("Library to register custom crafting recipes");
 
