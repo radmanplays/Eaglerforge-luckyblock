@@ -68,5 +68,5 @@
     LibCustomCrafting.registerRecipe = function register(data) {
         LCC_registerItem(data);
     };
-
+     ModAPI.events.callEvent("lib:libcustomitems:loaded", {});
 })();
