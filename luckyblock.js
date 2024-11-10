@@ -206,11 +206,17 @@
             "GGG"
         ];
 
-        // Convert the recipe pattern and legend into the required format
         var recipeInternal = [];
         Object.keys(recipeLegend).forEach((key) => {
             recipeInternal.push(ToChar(key));
-            var ingredient = ModAPI.blocks[recipeLegend[key].id].getRef();
+            var ingredient;
+            if (recipeLegend[key].type === "item") {
+                // Handle item (gold ingot)
+                ingredient = ModAPI.items[recipeLegend[key].id].getRef(); // Use ModAPI.items for items
+            } else if (recipeLegend[key].type === "block") {
+                // Handle block (dropper)
+                ingredient = ModAPI.blocks[recipeLegend[key].id].getRef();
+            }
             recipeInternal.push(ingredient);
         });
 
