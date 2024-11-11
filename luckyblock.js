@@ -76,6 +76,8 @@
                     const secondItem = EntityItem.constructors[1](world.getRef(), blockpos.x, blockpos.y, blockpos.z, secondOreStack);
                 } else if (randomChance < 0.40) {
                     // 20% chance: Spawn gold tools
+                    const itemStack = ModAPI.reflect.getClassByName("ItemStack");
+                    const EntityItem = ModAPI.reflect.getClassByName("EntityItem");
                     const goldswordStack = itemStack.constructors[4](ModAPI.items["golden_sword"].getRef(), 1);
                     const goldsword = EntityItem.constructors[1](world.getRef(), blockpos.x, blockpos.y, blockpos.z, goldswordStack);
                     const goldpickaxeStack = itemStack.constructors[4](ModAPI.items["golden_pickaxe"].getRef(), 1);
@@ -93,6 +95,8 @@
                     world.newExplosion(null, blockpos.getX() + 0.5, blockpos.getY() + 0.5, blockpos.getZ() + 0.5, 2, true, true);
                 } else if (randomChance < 1.00) {
                     // 20% chance: Rotten flesh
+                    const itemStack = ModAPI.reflect.getClassByName("ItemStack");
+                    const EntityItem = ModAPI.reflect.getClassByName("EntityItem");
                     const rottenfleshStack = itemStack.constructors[4](ModAPI.items["rotten_flesh"].getRef(), 1);
                     const rottenflesh = EntityItem.constructors[1](world.getRef(), blockpos.x, blockpos.y, blockpos.z, rottenfleshStack);
                 }
