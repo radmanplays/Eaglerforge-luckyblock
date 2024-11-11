@@ -22,7 +22,6 @@
         }
         
         async function spawnListOfEntities(entities, world) {
-            console.log("Spawning entities in world: ", entities, world);
             var spawn = ModAPI.promisify(ModAPI.hooks.methods.nmw_World_spawnEntityInWorld);
             for (let i=0; i<entities.length; i++) {
               await spawn(world, entities[i]);
@@ -50,12 +49,10 @@
         }
         //called after the block is broken
         nmb_Blocklucky.prototype.$breakBlock = function ($world, $blockpos, $blockstate) {
-            console.log("lucky block broken")
             var world = ModAPI.util.wrap($world);
             var blockpos = ModAPI.util.wrap($blockpos);
             const randomChance = Math.random();
             if(!isplayercreative){
-                console.log("player is in survival -")
                 if (randomChance < 0.20) {
                     // 20% chance: Spawn 3 items of two random ores (Diamond, Emerald, Gold, or Iron)
                     
@@ -83,7 +80,6 @@
                     const EntityItem = ModAPI.reflect.getClassByName("EntityItem");
                     const firstItem = EntityItem.constructors[1](world.getRef(), blockpos.x, blockpos.y, blockpos.z, firstOreStack);
                     const secondItem = EntityItem.constructors[1](world.getRef(), blockpos.x, blockpos.y, blockpos.z, secondOreStack);
-                    console.log("spawning ores -")
                     spawnListOfEntities([firstItem, secondItem], world.getRef());
                     
                 } else if (randomChance < 0.40) {
@@ -96,19 +92,16 @@
                     const goldpickaxe = EntityItem.constructors[1](world.getRef(), blockpos.x, blockpos.y, blockpos.z, goldpickaxeStack);
                     const goldaxeStack = itemStack.constructors[4](ModAPI.items["golden_axe"].getRef(), 1);
                     const goldaxe = EntityItem.constructors[1](world.getRef(), blockpos.x, blockpos.y, blockpos.z, goldaxeStack);
-                    console.log("spawning gold tools -")
                     spawnListOfEntities([goldsword, goldpickaxe, goldaxe], world.getRef());
                 } else if (randomChance < 0.60) {
                     // 20% chance: Spawn 50 experience orbs
                     for (let i = 0; i < 50; i++) {
                         const EntityXP = ModAPI.reflect.getClassByName("EntityXPOrb");
                         const xporb = EntityXP.constructors[0](world.getRef(), blockpos.x, blockpos.y, blockpos.z, 1); // Create XP orb with 1 experience value
-                        console.log("spawning xp -")
                         spawnListOfEntities([xporb], world.getRef());
                     }
                 } else if (randomChance < 0.80) {
                     // 20% chance: Trigger a TNT explosion with a 4-block blast radius
-                    console.log("kaboom -")
                     world.newExplosion(null, blockpos.getX() + 0.5, blockpos.getY() + 0.5, blockpos.getZ() + 0.5, 2, true, true);
                 } else if (randomChance < 1.00) {
                     // 20% chance: Rotten flesh
@@ -116,7 +109,6 @@
                     const EntityItem = ModAPI.reflect.getClassByName("EntityItem");
                     const rottenfleshStack = itemStack.constructors[4](ModAPI.items["rotten_flesh"].getRef(), 1);
                     const rottenflesh = EntityItem.constructors[1](world.getRef(), blockpos.x, blockpos.y, blockpos.z, rottenfleshStack);
-                    console.log("rotten flesh -")
                     spawnListOfEntities([rottenflesh], world.getRef());
                 }
                 
