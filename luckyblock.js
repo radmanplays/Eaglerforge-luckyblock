@@ -1,5 +1,5 @@
 (()=>{
-    ModAPI.meta.title("Luckyblock");
+    ModAPI.meta.title("Lucky Blocks");
     ModAPI.meta.credits("By radmanplays(with some code used from the unluckyblock mod by ZXMushroom63)");
     ModAPI.meta.icon("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAA1VBMVEXupRfunxT35l312kv24kv252rmhin10Tj1xTr352L0zjX35ljyqhv21D3smxT24EP341r1ohb2sBflfxb0vCbqmRP1zyzrkxL23Tvywi/331D9883978T86tb0lw7qeQ/woxT10TP22DP1xCbtohf22jX46nrpkjH1yS/0zDv10kj+9dn86NX12lX2kA/121/wmyX515D0syL3yY322ULnixLbchrokCj647/0zVT98cjlgxnplUT75sH42b31iRH1jSf02kT53MDXaRDojEPojUL417tO1HZdAAAA5UlEQVQY0x3KxWLDMBBF0ZEsy8xMMdUQxw2jQ+X//6SqncUszrvweTw6Bw/pQYBAtbcBnHZuNBcEQWZPFjdr0EXNxIqimLERVqXowQuHpXa6n++pGTaNj/4AJ9kXvY3TUFX/QLjFSKNhMXZCWCKAdyNOH1SWmAqhrwNwxBhO10ua/VC5qT0GihH38zT7ptfedwMGmBBiTg8qslZmxSsvSVjib5RTyL4+AKx4dm1yvsT73lUdVphsb5OPLqpta5YDiBpRMF51ztZWLSsHdSOWmibIkcv29c6BQi0KhJCuo9ly+XzLfwEFKBgMUhzHUAAAAABJRU5ErkJggg==");
     ModAPI.meta.description("eaglerforge luckyblock mod");
@@ -22,8 +22,9 @@
         }
         
         async function spawnListOfEntities(entities, world) {
+            console.log("Spawning entities in world: ", entities, world);
             var spawn = ModAPI.promisify(ModAPI.hooks.methods.nmw_World_spawnEntityInWorld);
-            for (i=0; i<entities.length; i++) {
+            for (let i=0; i<entities.length; i++) {
               await spawn(world, entities[i]);
             }
           }
@@ -49,11 +50,12 @@
         }
         //called after the block is broken
         nmb_Blocklucky.prototype.$breakBlock = function ($world, $blockpos, $blockstate) {
+            console.log("lucky block broken")
             var world = ModAPI.util.wrap($world);
             var blockpos = ModAPI.util.wrap($blockpos);
             const randomChance = Math.random();
-            let itemCount; // Variable to store the number of items to spawn
             if(!isplayercreative){
+                console.log("player is in survival -")
                 if (randomChance < 0.20) {
                     // 20% chance: Spawn 3 items of two random ores (Diamond, Emerald, Gold, or Iron)
                     
@@ -81,7 +83,9 @@
                     const EntityItem = ModAPI.reflect.getClassByName("EntityItem");
                     const firstItem = EntityItem.constructors[1](world.getRef(), blockpos.x, blockpos.y, blockpos.z, firstOreStack);
                     const secondItem = EntityItem.constructors[1](world.getRef(), blockpos.x, blockpos.y, blockpos.z, secondOreStack);
+                    console.log("spawning ores -")
                     spawnListOfEntities([firstItem, secondItem], world.getRef());
+                    
                 } else if (randomChance < 0.40) {
                     // 20% chance: Spawn gold tools
                     const itemStack = ModAPI.reflect.getClassByName("ItemStack");
@@ -92,16 +96,19 @@
                     const goldpickaxe = EntityItem.constructors[1](world.getRef(), blockpos.x, blockpos.y, blockpos.z, goldpickaxeStack);
                     const goldaxeStack = itemStack.constructors[4](ModAPI.items["golden_axe"].getRef(), 1);
                     const goldaxe = EntityItem.constructors[1](world.getRef(), blockpos.x, blockpos.y, blockpos.z, goldaxeStack);
+                    console.log("spawning gold tools -")
                     spawnListOfEntities([goldsword, goldpickaxe, goldaxe], world.getRef());
                 } else if (randomChance < 0.60) {
                     // 20% chance: Spawn 50 experience orbs
                     for (let i = 0; i < 50; i++) {
                         const EntityXP = ModAPI.reflect.getClassByName("EntityXPOrb");
                         const xporb = EntityXP.constructors[0](world.getRef(), blockpos.x, blockpos.y, blockpos.z, 1); // Create XP orb with 1 experience value
+                        console.log("spawning xp -")
                         spawnListOfEntities([xporb], world.getRef());
                     }
                 } else if (randomChance < 0.80) {
                     // 20% chance: Trigger a TNT explosion with a 4-block blast radius
+                    console.log("kaboom -")
                     world.newExplosion(null, blockpos.getX() + 0.5, blockpos.getY() + 0.5, blockpos.getZ() + 0.5, 2, true, true);
                 } else if (randomChance < 1.00) {
                     // 20% chance: Rotten flesh
@@ -109,6 +116,7 @@
                     const EntityItem = ModAPI.reflect.getClassByName("EntityItem");
                     const rottenfleshStack = itemStack.constructors[4](ModAPI.items["rotten_flesh"].getRef(), 1);
                     const rottenflesh = EntityItem.constructors[1](world.getRef(), blockpos.x, blockpos.y, blockpos.z, rottenfleshStack);
+                    console.log("rotten flesh -")
                     spawnListOfEntities([rottenflesh], world.getRef());
                 }
                 
@@ -158,7 +166,7 @@
         ModAPI.addEventListener("custom:asyncsink_reloaded", ()=>{
             ModAPI.mc.renderItem.registerBlock(block_of_luck, ModAPI.util.str("lucky_block"));
         });
-        AsyncSink.L10N.set("tile.lucky_block.name", "lucky Block");
+        AsyncSink.L10N.set("tile.lucky_block.name", "Lucky Block");
         AsyncSink.setFile("resourcepacks/AsyncSinkLib/assets/minecraft/models/block/lucky_block.json", JSON.stringify(
             {
                 "parent": "block/cube_all",
