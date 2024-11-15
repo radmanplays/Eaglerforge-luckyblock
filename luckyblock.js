@@ -211,14 +211,18 @@
             "G": {
                 type: "item",
                 id: "gold_ingot"
+            },
+            "A": {
+                type: "block",
+                id: "air"
             }
         };
 
         // Define the crafting grid pattern for the recipe
         var recipePattern = [
-            "GGG",
+            "AGA",
             "GDG",
-            "GGG"
+            "AGA"
         ];
 
         var recipeInternal = [];
