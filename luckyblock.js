@@ -2,7 +2,7 @@
     ModAPI.meta.title("Lucky Blocks");
     ModAPI.meta.credits("By radmanplays(with some code used from the unluckyblock mod by ZXMushroom63)");
     ModAPI.meta.icon("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAA1VBMVEXupRfunxT35l312kv24kv252rmhin10Tj1xTr352L0zjX35ljyqhv21D3smxT24EP341r1ohb2sBflfxb0vCbqmRP1zyzrkxL23Tvywi/331D9883978T86tb0lw7qeQ/woxT10TP22DP1xCbtohf22jX46nrpkjH1yS/0zDv10kj+9dn86NX12lX2kA/121/wmyX515D0syL3yY322ULnixLbchrokCj647/0zVT98cjlgxnplUT75sH42b31iRH1jSf02kT53MDXaRDojEPojUL417tO1HZdAAAA5UlEQVQY0x3KxWLDMBBF0ZEsy8xMMdUQxw2jQ+X//6SqncUszrvweTw6Bw/pQYBAtbcBnHZuNBcEQWZPFjdr0EXNxIqimLERVqXowQuHpXa6n++pGTaNj/4AJ9kXvY3TUFX/QLjFSKNhMXZCWCKAdyNOH1SWmAqhrwNwxBhO10ua/VC5qT0GihH38zT7ptfedwMGmBBiTg8qslZmxSsvSVjib5RTyL4+AKx4dm1yvsT73lUdVphsb5OPLqpta5YDiBpRMF51ztZWLSsHdSOWmibIkcv29c6BQi0KhJCuo9ly+XzLfwEFKBgMUhzHUAAAAABJRU5ErkJggg==");
-    ModAPI.meta.description("eaglerforge luckyblock mod");
+    ModAPI.meta.description("eaglerforge luckyblock mod.  Requires AsyncSink.");
 
     function luckyBlocks() {
         function fixupBlockIds() {
